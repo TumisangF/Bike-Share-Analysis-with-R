@@ -241,5 +241,3 @@ counts <- aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual +
                     all_trips_v2$day_of_week, FUN = mean)
 write.csv(counts, file = "C:/Users/T Fokase/Desktop/Analysis using R/counts.csv")
 
-rmarkdown::render("Analysis.R")
-rmarkdown::render("Analysis.R", "pdf_document")
