@@ -241,3 +241,14 @@ counts <- aggregate(all_trips_v2$ride_length ~ all_trips_v2$member_casual +
                     all_trips_v2$day_of_week, FUN = mean)
 write.csv(counts, file = "C:/Users/T Fokase/Desktop/Analysis using R/counts.csv")
 
+#=================================================
+# Conclusions and Recommendations
+#=================================================
+
+#Average trip length is longer for subscribers on any day of the week but the average distance is longer for customers
+
+#How could the stakaholders use my conclusion?
+#Offer discounts to occasional users based on the length of their journeys to increase their chances of becoming members.
+#Offer any promotions on Thursdays and Saturdays as bicycles are under-utilised on these days.
+
+
