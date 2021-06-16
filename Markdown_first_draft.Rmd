@@ -1,0 +1,278 @@
+---
+title: "Bike Share Analysis With R"
+author: "Tumisang Fokase"
+date: "6/14/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Introduction
+I am a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. 
+
+## Scenario
+Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers, the director believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, she believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.
+
+## Goal
+The director of the marketing has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members.
+
+## Beginning of the Analysis.
+
+Install,load required packages and set up the working directory
+```{r}
+library(pacman)
+pacman::p_load(pacman,tidyverse,lubridate,ggplot2,dplyr,psych)
+setwd("C:/Users/T Fokase/Desktop/Bike Share Case Study/Data/12_months_data/")
+```
+
+
+STEP 1: COLLECT DATA
+
+upload Divvy datasets(csv files)
+
+```{r}
+tripdata_2020_04 <- read_csv('202004-divvy-tripdata.csv')
+tripdata_2020_05 <- read_csv('202005-divvy-tripdata.csv')
+tripdata_2020_06 <- read_csv('202006-divvy-tripdata.csv')
+tripdata_2020_07 <- read_csv('202007-divvy-tripdata.csv')
+tripdata_2020_08 <- read_csv('202008-divvy-tripdata.csv')
+tripdata_2020_09 <- read_csv('202009-divvy-tripdata.csv')
+tripdata_2020_10 <- read_csv('202010-divvy-tripdata.csv')
+tripdata_2020_11 <- read_csv('202011-divvy-tripdata.csv')
+tripdata_2020_12 <- read_csv('202012-divvy-tripdata.csv')
+tripdata_2021_01 <- read_csv('202101-divvy-tripdata.csv')
+tripdata_2021_02 <- read_csv('202102-divvy-tripdata.csv')
+tripdata_2021_03 <- read_csv('202103-divvy-tripdata.csv')
+tripdata_2021_04 <- read_csv('202104-divvy-tripdata.csv')
+```
+
+Compare the column names of each of the files.
+Names need to match perfectly before we can join.
+```{r}
+colnames(tripdata_2020_04)
+colnames(tripdata_2020_05)
+colnames(tripdata_2020_06)
+colnames(tripdata_2020_07)
+colnames(tripdata_2020_08)
+colnames(tripdata_2020_09)
+colnames(tripdata_2020_10)
+colnames(tripdata_2020_11)
+colnames(tripdata_2020_12)
+colnames(tripdata_2021_01)
+colnames(tripdata_2021_02)
+colnames(tripdata_2021_03)
+colnames(tripdata_2021_04)
+```
+compare the structure of the table
+```{r}
+str(tripdata_2020_04)
+str(tripdata_2020_05)
+str(tripdata_2020_06)
+str(tripdata_2020_07)
+str(tripdata_2020_08)
+str(tripdata_2020_09)
+str(tripdata_2020_10)
+str(tripdata_2020_11)
+str(tripdata_2020_12)
+str(tripdata_2021_01)
+str(tripdata_2021_02)
+str(tripdata_2021_03)
+str(tripdata_2021_04)
+```
+
+
+Convert "start_station_id" and "end_station_id" to numberic so that they can stack correctly.
+
+```{r}
+tripdata_2020_04 <- mutate(tripdata_2020_04, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_05 <- mutate(tripdata_2020_05, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_06 <- mutate(tripdata_2020_06, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_07 <- mutate(tripdata_2020_07, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_08 <- mutate(tripdata_2020_08, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_09 <- mutate(tripdata_2020_09, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_10 <- mutate(tripdata_2020_10, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_11 <- mutate(tripdata_2020_11, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2020_12 <- mutate(tripdata_2020_12, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2021_01 <- mutate(tripdata_2021_01, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2021_02 <- mutate(tripdata_2021_02, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2021_03 <- mutate(tripdata_2021_03, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+tripdata_2021_04 <- mutate(tripdata_2021_04, start_station_id = as.character(start_station_id),
+                           end_station_id = as.character(end_station_id))
+```
+
+
+check to see if it worked.
+```{r}
+str(tripdata_2020_05)
+str(tripdata_2020_06)
+str(tripdata_2020_07)
+str(tripdata_2020_08)
+str(tripdata_2020_09)
+str(tripdata_2020_10)
+str(tripdata_2020_11)
+```
+
+Combine all the individual data frame into one big data frame
+```{r}
+all_tripdata <- bind_rows(tripdata_2020_04,tripdata_2020_05,tripdata_2020_06,tripdata_2020_07,
+                          tripdata_2020_08,tripdata_2020_09,tripdata_2020_10,tripdata_2020_11,
+                          tripdata_2020_12,tripdata_2021_01,tripdata_2021_02,tripdata_2021_03,
+                          tripdata_2021_04)
+```
+
+STEP3 : CLEAN UP AND ADD DATA TO PREPARE FOR ANALYSIS
+
+Inspect the new table that has been created
+```{r}
+colnames(all_tripdata)
+nrow(all_tripdata)
+dim(all_tripdata)
+head(all_tripdata)
+str(all_tripdata)
+```
+The data can only be aggregated at the ride-level, 
+which is too granular. We will want to add some additional columns of data 
+such as day, month, year -- that provide additional opportunities to aggregate the data.
+```{r}
+all_tripdata$date <- as.Date(all_tripdata$started_at) #The default format is yyyy-mm-dd
+all_tripdata$month <- format(as.Date(all_tripdata$date), "%m")
+all_tripdata$day <- format(as.Date(all_tripdata$date), "%d")
+all_tripdata$year <- format(as.Date(all_tripdata$date), "%Y")
+all_tripdata$day_of_week <- format(as.Date(all_tripdata$date), "%A")
+```
+Add a "ride_length" calculation to all_trips (in seconds)
+```{r}
+all_tripdata$ride_length <- difftime(all_tripdata$ended_at,all_tripdata$started_at)
+```
+Inspect the structure of the columns
+```{r}
+str(all_tripdata)
+```
+Convert "ride_length" from factor to numeric so we can run calculations on the data
+```{r}
+is.factor(all_tripdata$ride_length)                    #Checks to see if data type is a factor
+all_tripdata$ride_length <- as.numeric(as.character(all_tripdata$ride_length)) #Conversion to numeric
+is.numeric(all_tripdata$ride_length)       #Checks to see if the data is numeric
+```
+Remove "bad" data
+The dataframe includes a few hundred entries when bikes were taken out of docks and checked for quality by Divvy or ride_length was negative
+```{r}
+summary(all_tripdata$ride_length)
+```
+We will create a new version of the dataframe (v2) since data is being removed
+```{r}
+all_trip_data_v2 <- all_tripdata[!(all_tripdata$start_station_name == "HQ QR" | all_tripdata$ride_length<0),]
+```
+
+
+STEP 4: CONDUCT DESCRIPTIVE ANALYSIS
+
+
+Descriptive analysis on ride_length (all figures in seconds)
+```{r}
+mean(all_trip_data_v2$ride_length, na.rm = TRUE)  #straight average (total ride length / rides)
+median(all_trip_data_v2$ride_length, na.rm = TRUE)#midpoint number in the ascending array of ride length
+max(all_trip_data_v2$ride_length, na.rm = TRUE)        #longest ride
+min(all_trip_data_v2$ride_length, na.rm = TRUE)        #shortest 
+```
+You can condense the four lines above to one line using summary() on the specific attribute
+```{r}
+summary(all_trip_data_v2$ride_length, na.rm = TRUE)
+```
+Compare members and casual users
+```{r}
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual, FUN = mean)
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual, FUN = median)
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual, FUN = max)
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual, FUN = min)
+```
+
+See the average ride time by each day for members vs casual users
+```{r}
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual + all_trip_data_v2$day_of_week,
+          FUN = mean)
+```
+Notice that the days of the week are out of order. Let's fix that.
+```{r}
+all_trip_data_v2$day_of_week <- ordered(all_trip_data_v2$day_of_week, levels=c("Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+```
+Now, let's run the average ride time by each day for members vs casual users
+```{r}
+aggregate(all_trip_data_v2$ride_length ~ all_trip_data_v2$member_casual + all_trip_data_v2$day_of_week,
+          FUN = mean)
+```
+analyze ridership data by type and weekday
+```{r}
+all_trip_data_v2 %>%
+      mutate(weekday = wday(started_at, label = TRUE)) %>% #creates weekday field using wday()
+      group_by(member_casual, weekday) %>%                 #groups by usertype and weekday
+      summarise(number_of_rides = n()                      #calculates the number of rides and average duration
+      ,average_duration = mean(ride_length)) %>%           # calculates the average duration
+      arrange(member_casual, weekday)
+```
+Let's visualize the number of rides by rider type
+```{r}
+all_trip_data_v2 %>%
+  mutate(weekday = wday(started_at, label = TRUE)) %>%
+  group_by(member_casual, weekday) %>%
+  summarise(number_of_rides = n()
+            ,average_duration = mean(ride_length)) %>%
+  arrange(member_casual, weekday) %>%
+  ggplot(aes(x = weekday, y = number_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(title ="Number of Rides Vs. Weekdays")
+```
+Let's create a visualization for average duration
+```{r}
+all_trip_data_v2 %>%
+  mutate(weekday = wday(started_at, label = TRUE)) %>%
+  group_by(member_casual, weekday) %>%
+  summarise(number_of_rides = n()
+            ,average_duration = mean(ride_length)) %>%
+  arrange(member_casual, weekday) %>%
+  ggplot(aes(x = weekday, y = average_duration, fill = member_casual)) +
+  geom_col(position = "dodge")+
+  labs(title ="Average Duration Vs. Days of the week")
+```
+Visualization of ride type Vs. number of trips by customer type
+```{r}
+all_trip_data_v2 %>%
+  group_by(rideable_type, member_casual) %>%
+  summarise(ride_length = n()) %>%  
+  ggplot(aes(x= rideable_type, y=ride_length, fill= member_casual))+
+              geom_bar(stat='identity') +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
+  labs(title ="Ride type Vs. Number of trips")
+```
+
+
+### Key Takeaways:
+
+* Members use bikes consistently throughout the week while casual customers use them more during weekends.
+* Average trip duration of casual riders is more for casual customers than member riders.
+* Members prefer classic bikes while casual rider prefer docked bikes.
+
+### Recommendations:
+
+* Offer any promotions on Thursdays and Saturdays as bicycles are under-utilized on these days.
+* Offer discounted membership fee for renewals after the first year. It might nudge casual riders to take up membership.
+* Offer discounted pricing during non-busy hours/days (Thursday) so that casual riders might choose to use bikes more often and level out demand over the day
+
+### Additional data that could expand scope of the analysis:
+
+* Age and gender profile. This data could be used to study the category of riders who can be targeted for attracting new members.
+* Use latitude/longitude data to create map-like visuals to examine trip traffic by station.
+
+
