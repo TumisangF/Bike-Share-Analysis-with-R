@@ -1,7 +1,7 @@
 <h2 align="center">Forecasting Natural Gas Prices with Exogenous Variables</h1>
 
 <p align="center">
-  <a href="https://cdna.artstation.com/p/assets/images/images/006/759/716/original/midori-tonbo-flammer2.gif?1501045053" title="Header Gif">
+  <a href="https://www.pexels.com/photo/city-road-street-graffiti-3859984/" title="Header Gif">
   <img src="https://www.pexels.com/photo/city-road-street-graffiti-3859984/", width="450"/>
   </a>
 </p>
