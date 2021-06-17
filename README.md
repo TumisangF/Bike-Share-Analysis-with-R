@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://cdna.artstation.com/p/assets/images/images/006/759/716/original/midori-tonbo-flammer2.gif?1501045053" title="Header Gif">
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftowardsdatascience.com%2Fpredicting-no-of-bike-share-users-machine-learning-data-visualization-project-using-r-71bc1b9a7495&psig=AOvVaw04sA924RzD7AfQKJDz69--&ust=1624010768508000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDDzveanvECFQAAAAAdAAAAABAD", width="450"/>
+  <img src="https://www.pexels.com/photo/city-road-street-graffiti-3859984/", width="450"/>
   </a>
 </p>
 
