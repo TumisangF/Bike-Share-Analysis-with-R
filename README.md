@@ -1,8 +1,8 @@
 <h2 align="center">Cyclistic Bike Share Analysis Case Study</h1>
 
 <p align="center">
-  <a href="Images/Boston.jpg" title="Header Gif">
-  <img src="Images/Boston.jpg", width="650"/>
+  <a href="Images/Transportation.jpg" title="Header Gif">
+  <img src="Images/Transportation.jpg", width="650"/>
   </a>
 </p>
 
