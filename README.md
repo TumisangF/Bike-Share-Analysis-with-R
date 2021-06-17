@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="Images/Boston.jpg" title="Header Gif">
-  <img src="Images/Boston.jpg", width="450"/>
+  <img src="Images/Boston.jpg", width="650"/>
   </a>
 </p>
 
