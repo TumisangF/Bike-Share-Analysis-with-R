@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.pexels.com/photo/city-road-street-graffiti-3859984/" title="Header Gif">
-  <img src="https://www.pinterest.com/pin/13018286397496178/?d=t&mt=signupOrPersonalizedLogin", width="450"/>
+  <img src="/Bike-Share-Analysis-with-R/Images/City of Boston.jpg", width="450"/>
   </a>
 </p>
 
