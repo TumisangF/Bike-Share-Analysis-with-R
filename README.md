@@ -1,7 +1,7 @@
 <h2 align="center">Forecasting Natural Gas Prices with Exogenous Variables</h1>
 
 <p align="center">
-  <a href="https://www.pexels.com/photo/city-road-street-graffiti-3859984/" title="Header Gif">
+  <a href="/Bike-Share-Analysis-with-R/Images/City of Boston.jpg" title="Header Gif">
   <img src="/Bike-Share-Analysis-with-R/Images/City of Boston.jpg", width="450"/>
   </a>
 </p>
