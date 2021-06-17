@@ -1,4 +1,4 @@
-<h2 align="center">Forecasting Natural Gas Prices with Exogenous Variables</h1>
+<h2 align="center">Cyclistic BIke Share Analysis Case Study</h1>
 
 <p align="center">
   <a href="Images/Boston.jpg" title="Header Gif">
