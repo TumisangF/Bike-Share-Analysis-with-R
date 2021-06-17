@@ -17,4 +17,3 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 
 ## Goal
 The marketing director has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members.
-l explanatory power about price. Below is each model and it's corresponding RMSE:
